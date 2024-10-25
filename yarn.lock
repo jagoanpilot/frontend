@@ -1554,38 +1554,6 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@dynastyswap-libs/dynastyswap-core@Dynasty-Team/dynastyswap-core":
-  version "0.1.0"
-  resolved "https://codeload.github.com/Dynasty-Team/dynastyswap-core/tar.gz/d7a02f158fde1cfdd39586beddfc1889a2fb66d3"
-  dependencies:
-    truffle "^5.1.41"
-    truffle-flattener "^1.4.4"
-    truffle-hdwallet-provider "^1.0.17"
-
-"@dynastyswap-libs/sdk@Dynasty-Team/dynastyswap-sdk":
-  version "2.2.0"
-  resolved "https://codeload.github.com/Dynasty-Team/dynastyswap-sdk/tar.gz/10df0af984dc5e2571586228483e656dfa123b64"
-  dependencies:
-    "@dynastyswap-libs/dynastyswap-core" Dynasty-Team/dynastyswap-core
-    big.js "^5.2.2"
-    decimal.js-light "^2.5.0"
-    jsbi "^3.1.1"
-    tiny-invariant "^1.1.0"
-    tiny-warning "^1.0.3"
-    toformat "^2.0.0"
-
-"@dynastyswap-libs/uikit@Dynasty-Team/dynasty-uikit":
-  version "0.32.3"
-  resolved "https://codeload.github.com/Dynasty-Team/dynasty-uikit/tar.gz/10da153abb4d8e9ffa674810c81867b9225f0985"
-  dependencies:
-    "@popperjs/core" "^2.9.2"
-    "@types/lodash" "^4.14.168"
-    "@types/styled-system" "^5.1.10"
-    lodash "^4.17.20"
-    react-popper "^2.2.5"
-    react-transition-group "^4.4.1"
-    styled-system "^5.1.5"
-
 "@emotion/cache@^10.0.27":
   version "10.0.29"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-10.0.29.tgz#87e7e64f412c060102d589fe7c6dc042e6f9d1e0"
@@ -2745,6 +2713,39 @@
     eslint-plugin-jsx-a11y "^6.4.1"
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
+
+"@pancakeswap-libs/pancake-swap-core@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@pancakeswap-libs/pancake-swap-core/-/pancake-swap-core-0.1.0.tgz#6957f1fa02170531a2ffbf95f2c0e145e9d21bc2"
+  integrity sha512-2jYiD1Ec3xAbP4JTa/Ozylx0xI4VwC7diCm5ak4AtGrIRhfRLSanaZSQdVpLigUnIFszma/4nVWtt3cup4Poxw==
+  dependencies:
+    truffle "^5.1.41"
+    truffle-flattener "^1.4.4"
+    truffle-hdwallet-provider "^1.0.17"
+
+"@pancakeswap-libs/sdk@jetmoonswap/jetmoon-sdk":
+  version "2.2.0"
+  resolved "https://codeload.github.com/jetmoonswap/jetmoon-sdk/tar.gz/e60d04a675668fe350826eafc441b2d0d4f475cb"
+  dependencies:
+    "@pancakeswap-libs/pancake-swap-core" "^0.1.0"
+    big.js "^5.2.2"
+    decimal.js-light "^2.5.0"
+    jsbi "^3.1.1"
+    tiny-invariant "^1.1.0"
+    tiny-warning "^1.0.3"
+    toformat "^2.0.0"
+
+"@pancakeswap-libs/uikit@jetmoonswap/jetmoon-uikit":
+  version "0.32.3"
+  resolved "https://codeload.github.com/jetmoonswap/jetmoon-uikit/tar.gz/e21b8ea7be6b63b30691730ce927b5d5375dcf2d"
+  dependencies:
+    "@popperjs/core" "^2.9.2"
+    "@types/lodash" "^4.14.168"
+    "@types/styled-system" "^5.1.10"
+    lodash "^4.17.20"
+    react-popper "^2.2.5"
+    react-transition-group "^4.4.1"
+    styled-system "^5.1.5"
 
 "@pedrouid/environment@^1.0.1":
   version "1.0.1"
@@ -6711,9 +6712,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001125, caniuse-lite@^1.0.30001219:
-  version "1.0.30001669"
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001669.tgz"
-  integrity sha512-DlWzFDJqstqtIVx1zeSpIMLjunf5SmwOw0N2Ck/QSQdS8PLS4+9HrLaYei4w8BIAL7IB/UEDu889d8vhCTPA0w==
+  version "1.0.30001228"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001228.tgz#bfdc5942cd3326fa51ee0b42fbef4da9d492a7fa"
+  integrity sha512-QQmLOGJ3DEgokHbMSA8cj2a+geXqmnpyOFT0lhQV6P3/YOJvGDEwoedcwxEQ30gJIwIIunHIicunJ2rzK5gB2A==
 
 capture-exit@^2.0.0:
   version "2.0.0"
