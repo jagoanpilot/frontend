@@ -4,7 +4,7 @@ const config: MenuEntry[] = [
   {
     label: 'Home',
     icon: 'HomeIcon',
-    href: 'https://jetmoonswap.finance/',
+    href: 'https://dynastycoin.io/',
   },
   {
     label: 'Trade',
@@ -17,19 +17,19 @@ const config: MenuEntry[] = [
       },
       {
         label: 'Liquidity',
-        href: 'https://exchange.jetmoonswap.finance/#/pool',
+        href: 'https://dynasty-interface.vercel.app//#/pool',
       }
     ],
   },
   {
     label: 'Farms',
     icon: 'FarmIcon',
-    href: 'https://jetmoonswap.finance/farms',
+    href: 'https://dynasty-interface.vercel.app/farms',
   },
   {
     label: 'Pools',
     icon: 'PoolIcon',
-    href: 'https://jetmoonswap.finance/pools'
+    href: 'https://dynasty-interface.vercel.app/pools'
   },
   {
     label: 'More',
@@ -37,7 +37,7 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Contact',
-        href: 'mailto:support@jetmoonswap.finance',
+        href: 'mailto:support@dynastycoin.io',
       },
       // {
       //   label: 'Voting',
@@ -45,11 +45,11 @@ const config: MenuEntry[] = [
       // },
       {
         label: 'Github',
-        href: 'https://github.com/jetmoonswap',
+        href: 'https://github.com/Dynasty-Team',
       },
       {
         label: 'Docs',
-        href: 'https://doc.jetmoonswap.finance',
+        href: 'https://doc.dynastycoin.io',
       },
       // {
       //   label: 'Blog',
@@ -57,7 +57,7 @@ const config: MenuEntry[] = [
       // },
       {
         label: 'Medium',
-        href: 'https://medium.com/@jetmoonswap',
+        href: 'https://medium.com/@Dynasty-Team',
       },
     ],
   },

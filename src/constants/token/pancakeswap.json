@@ -7,7 +7,7 @@
         "patch": 0
     },
     "tags": {},
-    "logoURI": "https://exchange.jetmoonswap.finance/images/pancakeswap.png",
+    "logoURI": "https://dynasty-interface.vercel.app//images/pancakeswap.png",
     "keywords": ["sdna", "default"],
     "tokens": [{
             "name": "DynastySwap",
@@ -15,7 +15,7 @@
             "address": "0x07D718E432dA8f86690E978368ff4BE5C2198098",
             "chainId": 11155111,
             "decimals": 18,
-            "logoURI": "https://exchange.jetmoonswap.finance/images/coins/0x07D718E432dA8f86690E978368ff4BE5C2198098.png"
+            "logoURI": "https://dynasty-interface.vercel.app//images/coins/0x07D718E432dA8f86690E978368ff4BE5C2198098.png"
         },
         {
             "name": "DUSD Token",
@@ -23,7 +23,7 @@
             "address": "0xEfE40EC15b00FeC37047260f54b07cE701Aeb763",
             "chainId": 11155111,
             "decimals": 18,
-            "logoURI": "https://exchange.jetmoonswap.finance/images/coins/0xEfE40EC15b00FeC37047260f54b07cE701Aeb763.png"
+            "logoURI": "https://dynasty-interface.vercel.app//images/coins/0xEfE40EC15b00FeC37047260f54b07cE701Aeb763.png"
         },
         {
             "name": "Tether USD",
@@ -31,7 +31,7 @@
             "address": "0x0f657fA8793648b63B5c468CFa9Af874fa3CF34C",
             "chainId": 11155111,
             "decimals": 18,
-            "logoURI": "https://exchange.jetmoonswap.finance/images/coins/0x0f657fA8793648b63B5c468CFa9Af874fa3CF34C.png"
+            "logoURI": "https://dynasty-interface.vercel.app//images/coins/0x0f657fA8793648b63B5c468CFa9Af874fa3CF34C.png"
         }
     ]
 }
