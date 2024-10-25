@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit'
-import { ChainId } from '@dynastyswap/sdk'
+import { ChainId } from '@dynastyswap-libs/sdk'
 
 export interface SerializableTransactionReceipt {
   to: string
@@ -17,7 +17,6 @@ export const addTransaction = createAction<{
   hash: string
   from: string
   approval?: { tokenAddress: string; spender: string }
-  claim?: { recipient: string }
   summary?: string
 }>('transactions/addTransaction')
 export const clearAllTransactions = createAction<{ chainId: ChainId }>('transactions/clearAllTransactions')

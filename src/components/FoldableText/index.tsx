@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { ExpandableLabel, Flex, FlexProps, Text } from 'packages/uikit'
-import { useTranslation } from 'contexts/Localization'
+import { ExpandableLabel, Flex, FlexProps, Text } from '@dynastyswap-libs/uikit'
+import useI18n from 'hooks/useI18n'
 
 interface FoldableTextProps extends FlexProps {
   title?: string
@@ -26,16 +26,16 @@ const StyledChildrenFlex = styled(Flex)<{ isExpanded?: boolean }>`
 `
 
 const FoldableText: React.FC<FoldableTextProps> = ({ title, children, ...props }) => {
-  const { t } = useTranslation()
+  const TranslateString = useI18n()
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
     <Wrapper {...props} flexDirection="column" onClick={() => setIsExpanded(!isExpanded)}>
       <Flex justifyContent="space-between" alignItems="center" pb="16px">
-        <Text fontWeight="bold">{title}</Text>
+        <Text bold>{title}</Text>
         <StyledExpandableLabelWrapper>
           <ExpandableLabel expanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
-            {isExpanded ? t('Hide') : t('Details')}
+            {isExpanded ? TranslateString(1066, 'Hide') : TranslateString(658, 'Details')}
           </ExpandableLabel>
         </StyledExpandableLabelWrapper>
       </Flex>

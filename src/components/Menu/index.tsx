@@ -1,40 +1,37 @@
-import React from 'react'
-import { Menu as UikitMenu } from 'packages/uikit'
-import { languageList } from 'config/localization/languages'
-import { useTranslation } from 'contexts/Localization'
+import React, { useContext } from 'react'
+import { Menu as UikitMenu} from '@dynastyswap-libs/uikit'
+import { useWeb3React } from '@web3-react/core'
+import { allLanguages } from 'constants/localisation/languageCodes'
+import { LanguageContext } from 'hooks/LanguageContext'
 import useTheme from 'hooks/useTheme'
-import { useProfile } from 'state/profile/hooks'
-import { useCakeBusdPrice } from 'hooks/useBUSDPrice'
-import config from './config'
-import UserMenu from './UserMenu'
-import GlobalSettings from './GlobalSettings'
+import { useGetPriceData, useGetyPantyPrice } from 'hooks/useGetPriceData'
+import useGetLocalProfile from 'hooks/useGetLocalProfile'
+import useAuth from 'hooks/useAuth'
+import links from './config'
 
-const Menu = (props) => {
+const Menu: React.FC = (props) => {
+  const { account } = useWeb3React()
+  const { login, logout } = useAuth()
+  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   const { isDark, toggleTheme } = useTheme()
-  const cakePriceUsd = useCakeBusdPrice()
-  const cakePriceUsdDisplay = cakePriceUsd ? `${cakePriceUsd.toFixed(5)}` : ''
-
-  const { profile } = useProfile()
-  const { currentLanguage, setLanguage, t } = useTranslation()
+  const cakePriceUsd = useGetPriceData()
+ // const yPantyPriceUsd = useGetyPantyPrice()
+  const profile = useGetLocalProfile()
 
   return (
     <UikitMenu
-      userMenu={<UserMenu />}
-      globalMenu={<GlobalSettings />}
+      links={links}
+      account={account as string}
+      login={login}
+      logout={logout}
       isDark={isDark}
       toggleTheme={toggleTheme}
-      currentLang={currentLanguage.code}
-      langs={languageList}
-      setLang={setLanguage}
-      cakePriceUsd={cakePriceUsdDisplay}
-      links={config(t)}
-      profile={{
-        username: profile?.username,
-        image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
-        profileLink: '/profile',
-        noProfileLink: '/profile',
-        showPip: !profile?.username,
-      }}
+      currentLang={selectedLanguage?.code || ''}
+      langs={allLanguages}
+      setLang={setSelectedLanguage}
+      cakePriceUsd={cakePriceUsd}
+      // ypantyPriceUsd={yPantyPriceUsd}
+      profile={profile}
       {...props}
     />
   )

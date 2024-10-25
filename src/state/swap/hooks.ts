@@ -1,22 +1,21 @@
 import { parseUnits } from '@ethersproject/units'
-import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount, Trade } from '@dynastyswap/sdk'
+import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount, Trade } from '@dynastyswap-libs/sdk'
 import { ParsedQs } from 'qs'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import useENS from 'hooks/ENS/useENS'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useCurrency } from 'hooks/Tokens'
-import { useTradeExactIn, useTradeExactOut } from 'hooks/Trades'
-import useParsedQueryString from 'hooks/useParsedQueryString'
-import { useTranslation } from 'contexts/Localization'
-import { isAddress } from 'utils'
-import { computeSlippageAdjustedAmounts } from 'utils/prices'
-import tokens from 'config/constants/tokens'
+import useENS from '../../hooks/useENS'
+import { useActiveWeb3React } from '../../hooks'
+import { useCurrency } from '../../hooks/Tokens'
+import { useTradeExactIn, useTradeExactOut } from '../../hooks/Trades'
+import useParsedQueryString from '../../hooks/useParsedQueryString'
+import { isAddress } from '../../utils'
 import { AppDispatch, AppState } from '../index'
 import { useCurrencyBalances } from '../wallet/hooks'
 import { Field, replaceSwapState, selectCurrency, setRecipient, switchCurrencies, typeInput } from './actions'
 import { SwapState } from './reducer'
+
 import { useUserSlippageTolerance } from '../user/hooks'
+import { computeSlippageAdjustedAmounts } from '../../utils/prices'
 
 export function useSwapState(): AppState['swap'] {
   return useSelector<AppState, AppState['swap']>((state) => state.swap)
@@ -34,11 +33,11 @@ export function useSwapActionHandlers(): {
       dispatch(
         selectCurrency({
           field,
-          currencyId: currency instanceof Token ? currency.address : currency === ETHER ? 'VLX' : '',
-        }),
+          currencyId: currency instanceof Token ? currency.address : currency === ETHER ? 'DNY' : '',
+        })
       )
     },
-    [dispatch],
+    [dispatch]
   )
 
   const onSwitchTokens = useCallback(() => {
@@ -49,14 +48,14 @@ export function useSwapActionHandlers(): {
     (field: Field, typedValue: string) => {
       dispatch(typeInput({ field, typedValue }))
     },
-    [dispatch],
+    [dispatch]
   )
 
   const onChangeRecipient = useCallback(
     (recipient: string | null) => {
       dispatch(setRecipient({ recipient }))
     },
-    [dispatch],
+    [dispatch]
   )
 
   return {
@@ -81,16 +80,16 @@ export function tryParseAmount(value?: string, currency?: Currency): CurrencyAmo
     }
   } catch (error) {
     // should fail if the user specifies too many decimal places of precision (or maybe exceed max uint?)
-    console.debug(`Failed to parse input amount: "${value}"`, error)
+    console.info(`Failed to parse input amount: "${value}"`, error)
   }
   // necessary for all paths to return a value
   return undefined
 }
 
 const BAD_RECIPIENT_ADDRESSES: string[] = [
-  // TODO: addresses
-  '0x90594Eaff8567C16cF27528181d99a125B8D5cf3', // v2 factory
-  '0x93848497Fe87da12a9F3E213b8445d9712257558', // v2 router 02
+  '0xBCfCcbde45cE874adCB698cC183deBcF17952812', // v2 factory
+  '0xf164fC0Ec4E93095b804a4795bBe1e041497b92a', // v2 router 01
+  '0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F', // v2 router 02
 ]
 
 /**
@@ -114,7 +113,6 @@ export function useDerivedSwapInfo(): {
   inputError?: string
 } {
   const { account } = useActiveWeb3React()
-  const { t } = useTranslation()
 
   const {
     independentField,
@@ -154,26 +152,26 @@ export function useDerivedSwapInfo(): {
 
   let inputError: string | undefined
   if (!account) {
-    inputError = t('Connect Wallet')
+    inputError = 'Connect Wallet'
   }
 
   if (!parsedAmount) {
-    inputError = inputError ?? t('Enter an amount')
+    inputError = inputError ?? 'Enter an amount'
   }
 
   if (!currencies[Field.INPUT] || !currencies[Field.OUTPUT]) {
-    inputError = inputError ?? t('Select a token')
+    inputError = inputError ?? 'Select a token'
   }
 
   const formattedTo = isAddress(to)
   if (!to || !formattedTo) {
-    inputError = inputError ?? t('Enter a recipient')
+    inputError = inputError ?? 'Enter a recipient'
   } else if (
     BAD_RECIPIENT_ADDRESSES.indexOf(formattedTo) !== -1 ||
     (bestTradeExactIn && involvesAddress(bestTradeExactIn, formattedTo)) ||
     (bestTradeExactOut && involvesAddress(bestTradeExactOut, formattedTo))
   ) {
-    inputError = inputError ?? t('Invalid recipient')
+    inputError = inputError ?? 'Invalid recipient'
   }
 
   const [allowedSlippage] = useUserSlippageTolerance()
@@ -187,7 +185,7 @@ export function useDerivedSwapInfo(): {
   ]
 
   if (balanceIn && amountIn && balanceIn.lessThan(amountIn)) {
-    inputError = t('Insufficient %symbol% balance', { symbol: amountIn.currency.symbol })
+    inputError = `Insufficient ${amountIn.currency.symbol} balance`
   }
 
   return {
@@ -203,10 +201,10 @@ function parseCurrencyFromURLParameter(urlParam: any): string {
   if (typeof urlParam === 'string') {
     const valid = isAddress(urlParam)
     if (valid) return valid
-    if (urlParam.toUpperCase() === 'ADA') return tokens.ada.address
-    if (valid === false) return tokens.ada.address
+    if (urlParam.toUpperCase() === 'DNY') return 'DNY'
+    if (valid === false) return 'DNY'
   }
-  return tokens.ada.address ?? ''
+  return ''
 }
 
 function parseTokenAmountURLParameter(urlParam: any): string {
@@ -276,8 +274,8 @@ export function useDefaultsFromURLSearch():
         field: parsed.independentField,
         inputCurrencyId: parsed[Field.INPUT].currencyId,
         outputCurrencyId: parsed[Field.OUTPUT].currencyId,
-        recipient: null,
-      }),
+        recipient: parsed.recipient,
+      })
     )
 
     setResult({ inputCurrencyId: parsed[Field.INPUT].currencyId, outputCurrencyId: parsed[Field.OUTPUT].currencyId })

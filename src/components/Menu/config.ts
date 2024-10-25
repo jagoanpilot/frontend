@@ -1,136 +1,64 @@
-import { MenuEntry } from 'packages/uikit'
-import { ContextApi } from 'contexts/Localization/types'
+import { MenuEntry } from '@dynastyswap-libs/uikit'
 
-const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
-  // {
-  //   label: t('Home'),
-  //   icon: 'HomeIcon',
-  //   href: '/',
-  // },
+const config: MenuEntry[] = [
   {
-    label: t('Trade'),
+    label: 'Home',
+    icon: 'HomeIcon',
+    href: 'https://jetmoonswap.finance/',
+  },
+  {
+    label: 'Trade',
     icon: 'TradeIcon',
+    initialOpenState: true,
     items: [
       {
-        label: t('Exchange'),
+        label: 'Exchange',
         href: '/swap',
       },
       {
-        label: t('Liquidity'),
-        href: '/liquidity',
-      },
-      // {
-      //   label: t('LP Migration'),
-      //   href: 'https://v1exchange.pancakeswap.finance/#/migrate',
-      // },
+        label: 'Liquidity',
+        href: 'https://exchange.jetmoonswap.finance/#/pool',
+      }
     ],
   },
   {
-    label: t('Farms'),
+    label: 'Farms',
     icon: 'FarmIcon',
-    href: '/farms',
+    href: 'https://jetmoonswap.finance/farms',
   },
   {
-    label: t('Pools'),
+    label: 'Pools',
     icon: 'PoolIcon',
-    href: '/pools',
+    href: 'https://jetmoonswap.finance/pools'
   },
-  // {
-  //   label: t('Prediction (BETA)'),
-  //   icon: 'PredictionsIcon',
-  //   href: '/prediction',
-  // },
   {
-    label: t('Lottery'),
-    icon: 'TicketIcon',
-    href: '/lottery',
-  },
-  // {
-  //   label: t('Collectibles'),
-  //   icon: 'NftIcon',
-  //   href: '/collectibles',
-  // },
-  // {
-  //   label: t('Team Battle'),
-  //   icon: 'TeamBattleIcon',
-  //   href: '/competition',
-  // },
-  // {
-  //   label: t('Teams & Profile'),
-  //   icon: 'GroupsIcon',
-  //   items: [
-  //     {
-  //       label: t('Leaderboard'),
-  //       href: '/teams',
-  //     },
-  //     {
-  //       label: t('Task Center'),
-  //       href: '/profile/tasks',
-  //     },
-  //     {
-  //       label: t('Your Profile'),
-  //       href: '/profile',
-  //     },
-  //   ],
-  // },
-  {
-    label: t('Info'),
-    icon: 'InfoIcon',
-    href: '/info',
-  },
-  // {
-  //   label: t('IFO'),
-  //   icon: 'IfoIcon',
-  //   href: '/ifo',
-  // },
-  {
-    label: t('More'),
+    label: 'More',
     icon: 'MoreIcon',
     items: [
-      // {
-      //   label: t('Contact'),
-      //   href: 'https://docs.astroswap.app/',
-      // },
-      // {
-      //   label: t('Voting'),
-      //   href: '/voting',
-      // },
       {
-        label: t('Github'),
-        href: 'https://github.com/astroswapapp',
-      },
-      {
-        label: t('Cross chain swapz'),
-        href: 'https://cross2.swapz.app',
-      },
-      {
-        label: t('Docs'),
-        href: 'https://docs.astroswap.app/',
+        label: 'Contact',
+        href: 'mailto:support@jetmoonswap.finance',
       },
       // {
-      //   label: t('Blog'),
-      //   href: 'https://medium.com/@astroswap',
+      //   label: 'Voting',
+      //   href: 'https://voting.pancakeswap.finance',
       // },
       {
-        label: t('Support'),
-        href: 'mailto:support@astroswap.app',
+        label: 'Github',
+        href: 'https://github.com/jetmoonswap',
       },
       {
-        label: t('AML Policy'),
-        href: '/aml-policy',
-      },
-      {
-        label: t('Privacy&Cookie Policy'),
-        href: '/privacy-cookie-policy',
-      },
-      {
-        label: t('Terms of Use'),
-        href: '/terms-of-use',
+        label: 'Docs',
+        href: 'https://doc.jetmoonswap.finance',
       },
       // {
-      //   label: t('Merch'),
-      //   href: 'https://pancakeswap.creator-spring.com/',
+      //   label: 'Blog',
+      //   href: 'https://pancakeswap.medium.com',
       // },
+      {
+        label: 'Medium',
+        href: 'https://medium.com/@jetmoonswap',
+      },
     ],
   },
 ]
